@@ -1,17 +1,3 @@
 INDEX VERSION 1.127+/home/nathan/College/EECS 1510/EclipseWorkspace/.metadata/.plugins/org.eclipse.jdt.core
-1722821658.index
-2878493132.index
-521007113.index
-117635114.index
-2496230297.index
-1977800826.index
 98998406.index
-342638429.index
-2277715748.index
-164078082.index
-91703982.index
-3521232804.index
-2345302051.index
-884942638.index
-1162569670.index
-3953896707.index
+4000971405.index

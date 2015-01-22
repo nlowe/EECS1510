@@ -1,0 +1,82 @@
+package eecs1510.exercise;
+
+import java.util.Scanner;
+
+/**
+ * 
+ *
+ * @author Nathan Lowe
+ * Created on Jan 22, 2015
+ * 
+ * Calculates the area of a triangle given three points
+ *
+ */
+public class TriangleArea
+{
+
+	public static void main(String[] args)
+	{
+		Scanner s = new Scanner(System.in);
+		
+		System.out.print("Enter the First Point of the Triangle: ");
+		String p1str = s.nextLine();
+		double[] p1 = stringToPoint(p1str.trim());
+		
+		System.out.print("Enter the Second Point of the Triangle: ");
+		String p2str = s.nextLine(); 
+		double[] p2 = stringToPoint(p2str.trim());
+		
+		System.out.print("Enter the Third Point of the Triangle: ");
+		String p3str = s.nextLine();
+		double[] p3 = stringToPoint(p3str.trim());
+		
+		double[] sides = sideLength(p1[0], p1[1], p2[0], p2[1], p3[0], p3[1]);
+		double[] angles = triangleAngles(sides, p1, p2, p3);
+		double area = triangleArea(sides[0], sides[1], sides[2]);
+		double parimeter = sides[0] + sides[1] + sides[2];
+		
+		System.out.printf("The the triangle formed by the points (%f,%f),(%f,%f),(%f,%f) has\n"
+				+ "\tSide lengths of: %f, %f, and %f\n"
+				+ "\tAngle Measurements of: %f, %f, and %f\n"
+				+ "\tan Area of: %f\n"
+				+ "\ta Perimeter of %f", p1[0], p1[1], p2[0], p2[1], p3[0], p3[1], sides[0], sides[1], sides[2], angles[0], angles[1], angles[2], area, parimeter);
+		
+		s.close();
+	}
+	
+	public static double[] stringToPoint(String str)
+	{
+		if(str.startsWith("(")) str = str.substring(1);
+		if(str.endsWith(")")) str.substring(0, str.length() - 2);
+		
+		String[] components = str.split(",");
+		if(components.length > 2){
+			throw new IllegalArgumentException("Invalid input: " + str);
+		}
+		
+		return new double[]{Double.parseDouble(components[0]), Double.parseDouble(components[1])};
+		
+	}
+	
+	public static double dist(double x1, double y1, double x2, double y2)
+	{
+		return Math.sqrt(Math.pow(y2 - y1, 2) + Math.pow(x2 - x1, 2));
+	}
+	
+	public static double[] sideLength(double x1, double y1, double x2, double y2, double x3, double y3)
+	{
+		return new double[]{dist(x1, y1, x2, y2), dist(x2, y2, x3, y3), dist(x1, y1, x3, y3)};
+	}
+	
+	public static double[] triangleAngles(double[] sides, double[] a, double[] b, double[] c)
+	{
+		return new double[]{Math.toDegrees(Math.atan2(sides[0], sides[1])), Math.toDegrees(Math.atan2(sides[1], sides[2])), Math.toDegrees(Math.atan2(sides[0], sides[2]))};
+	}
+	
+	public static double triangleArea(double side1, double side2, double side3)
+	{
+		double s = (side1 + side2 + side3)/2;
+		return Math.sqrt(s * (s - side1) * (s - side2) * (s - side3));
+	}
+	
+}
