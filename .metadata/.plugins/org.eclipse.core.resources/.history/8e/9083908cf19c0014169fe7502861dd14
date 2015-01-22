@@ -18,21 +18,22 @@ public class ApproximatePi
 		System.out.println("PI approximated using factors out to 1/11: " + approximate(11));
 		System.out.println("PI approximated using factors out to 1/13: " + approximate(13));
 		System.out.println("PI approximated using factors out to 1/15: " + approximate(15));
-		System.out.println("PI approximated using factors out to 1/99999: " + approximate(9999999));
+		System.out.println("PI approximated using factors out to 1/99999: " + approximate(99999));
 	}
 
 	/**
 	 * Approximates the value of PI using the formula 
 	 *            1     1     1         1     1
 	 * 4 * ( 1 - --- + --- - --- ... + --- - --- )
-	 *            3     5     7        n-2    n
-	 * where n is an odd number (n-1 will be the last term if n is even)
+	 *            3     5     7        n-3    n
+	 * where n is an odd number
 	 * 
 	 * @param max The maximum factor to approximate to
 	 * @return an Approximate value of PI
 	 */
 	public static double approximate(int max)
 	{
+		double result =  4d;
 		double factor =  1d;
 		double sign   = -1d;
 
@@ -42,6 +43,6 @@ public class ApproximatePi
 			sign *= -1;
 		}
 
-		return 4d * factor;
+		return result * factor;
 	}
 }
